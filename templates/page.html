@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" href='/static/style.css' />
+</head>
+
+<body onload="myFunction()">
+<h1>{{ salutation }} {{ name }}!</h1}
+<br>
+
+<div id="myDiv">
+<a id="linkButton", href="{{ url_for('greeting', name=name, salutation="Goodnight") }}">Hometime?</a>
+</div>
+
+
+<script>
+var salutation = "{{ salutation }}";
+
+function myFunction(){
+if (salutation == "Goodnight"){
+	document.getElementById("linkButton").style.display = 'none';
+	changeCSS('/static/style2.css',0);
+	}		
+}
+
+function changeCSS(cssFile, cssLinkIndex){
+	var oldLink = document.getElementsByTagName("link").item(cssLinkIndex);
+	
+	var newLink = document.createElement("link");
+	newLink.setAttribute("rel", "stylesheet");
+	newLink.setAttribute("type", "text/css");
+	newLink.setAttribute("href", cssFile);
+
+	document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
+}
+
+
+</script>
+
+</body>
+</html>
